@@ -66,6 +66,7 @@ function FindByCity() {
     }
 }
 
+// разбор json с сервера. Может содержать как объект, так и массив объектов
 function json2loc(json) {
     var jo = JSON.parse(json);
     if (Array.isArray(jo)) {//если массив
@@ -78,6 +79,7 @@ function json2loc(json) {
     }
 }
 
+// добавить строку с объектом к таблице результатов
 function tblAddRow(jo) {
     var tbl = document.querySelector("#restbl tbody");
     var row = tbl.insertRow();

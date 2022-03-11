@@ -34,27 +34,27 @@ namespace TestProject
         }
 
         [Fact]
-        public void PrintLoadSpeed()
+        public void Print_Load_Speed()
         {
             Assert.True(_fileLoadTime < TimeSpan.FromMilliseconds(30));
             _testOutput.WriteLine($"File loaded for {_fileLoadTime.TotalMilliseconds} ms");
         }
 
         [Fact]
-        public void PrintParseSpeed()
+        public void Print_Parse_Speed()
         {
             _testOutput.WriteLine($"File parsed for {_fileParseTime.TotalMilliseconds} ms");
         }
 
         [Fact]
-        public void FileLoaded()
+        public void File_Loaded()
         {
             Assert.IsType<byte[]>(_data);
             Assert.True(_data.Length > 0);
         }
 
         [Fact]
-        public void DatabaseParsedCorrecty()
+        public void Database_Parsed_Correcty()
         {
             Assert.True(_db.Header is not null);
             Assert.True(_db.Ranges.Count() == _db.Header.Records);
@@ -63,10 +63,22 @@ namespace TestProject
         }
 
         [Fact]
-        public void Database_Contains_cit_I_192times()
+        public void Database_Contains_cit_I_192_Times()
         {
             var data = _repository.GetLocations("cit_I");
             Assert.True(data.Count() == 192);
+        }
+        [Fact]
+        public void Database_Does_Not_Contain_Garbage()
+        {
+            var data = _repository.GetLocations("cit_I sdf adf ");
+            Assert.False(data.Count() > 0);
+        }
+        [Fact]
+        public void Database_Contains_Correct_IP()
+        {
+            var data = _repository.GetLocation(System.Net.IPAddress.Parse("1.1.1.1"));
+            Assert.True(data.City == "cit_Ykojof");
         }
     }
 }

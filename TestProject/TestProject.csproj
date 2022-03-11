@@ -21,6 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MQHomeWork\MQHomeWork.csproj" />
     <ProjectReference Include="..\MQTest\MQHomeWork.csproj" />
   </ItemGroup>
 
