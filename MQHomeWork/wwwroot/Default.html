@@ -1,0 +1,46 @@
+﻿<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>GeoBase</title>
+    <meta name="description" content="Homework project">
+    <meta name="author" content="Dzmitry Paliakou">
+
+    <link rel="icon" href="/images/favicon.ico">
+    <link rel="stylesheet" href="css/styles.css?v=1.0">
+</head>
+<body>
+    <menu>
+        <header>Локации</header>
+        <menuitem onclick="LoadIPSearch()">Поиск по IP</menuitem>
+        <menuitem onclick="LoadCitySearch()">Поиск по городу</menuitem>
+    </menu>
+    <main>
+
+    </main>
+    <template id="ipTemplate">
+        <h1>Поиск по IP</h1>
+        <div class="form">
+            <label for="ipText">IP</label>
+            <input type="text" id="ipText" />
+            <button onclick="FindByIP()">Искать</button>
+            <div id="error" />
+        </div>
+        <div id="results" />
+    </template>
+    <template id="cityTemplate">
+        <h1>Поиск по городу</h1>
+        <div class="form">
+            <label for="cityText">Город</label>
+            <input type="text" id="cityText" />
+            <button onclick="FindByCity()">Искать</button>
+            <div id="error" />
+        </div>
+        <div id="results" />
+    </template>
+    <script src="js/script.js"></script>
+</body>
+</html>
