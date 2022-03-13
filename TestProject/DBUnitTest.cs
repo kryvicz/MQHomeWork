@@ -33,6 +33,9 @@ namespace TestProject
             
         }
 
+        /// <summary>
+        /// Фиксирует время, необходимое на чтение базы
+        /// </summary>
         [Fact]
         public void Print_Load_Speed()
         {
@@ -40,12 +43,18 @@ namespace TestProject
             _testOutput.WriteLine($"File loaded for {_fileLoadTime.TotalMilliseconds} ms");
         }
 
+        /// <summary>
+        /// Фиксирует время, необходимое на разбор базы
+        /// </summary>
         [Fact]
         public void Print_Parse_Speed()
         {
             _testOutput.WriteLine($"File parsed for {_fileParseTime.TotalMilliseconds} ms");
         }
 
+        /// <summary>
+        /// Убеждаемся, что файл базы читается
+        /// </summary>
         [Fact]
         public void File_Loaded()
         {
@@ -53,6 +62,9 @@ namespace TestProject
             Assert.True(_data.Length > 0);
         }
 
+        /// <summary>
+        /// Из базы данных извлечены заголовки и записи
+        /// </summary>
         [Fact]
         public void Database_Parsed_Correcty()
         {
@@ -62,18 +74,29 @@ namespace TestProject
             Assert.True(_db.Indices.Count() == _db.Header.Records);
         }
 
+        /// <summary>
+        /// В базе город cit_I содержится 192 раза
+        /// </summary>
         [Fact]
         public void Database_Contains_cit_I_192_Times()
         {
             var data = _repository.GetLocations("cit_I");
             Assert.True(data.Count() == 192);
         }
+
+        /// <summary>
+        /// Поиск в базе несуществующего города
+        /// </summary>
         [Fact]
         public void Database_Does_Not_Contain_Garbage()
         {
             var data = _repository.GetLocations("cit_I sdf adf ");
             Assert.False(data.Count() > 0);
         }
+
+        /// <summary>
+        /// Проверка результата по заведомо известному ip
+        /// </summary>
         [Fact]
         public void Database_Contains_Correct_IP()
         {

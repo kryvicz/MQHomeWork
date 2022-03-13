@@ -13,11 +13,16 @@ void Enque()
 
 using CancellationTokenSource cts = new ();
 CancellationToken cancellationToken = cts.Token;
+
+// отображать статистику раз в n секунд
 var secondsStatPrint = 10;
 var ts = TimeSpan.FromSeconds(secondsStatPrint);
 var timer = new PeriodicTimer(ts);
 
 await Task.Delay(15000);
+/// <summary>
+/// Периодическое отображение статистики
+/// </summary>
 var t = Task.Run(async () =>
 {
     int timerTicks = 0;
@@ -1038,6 +1043,9 @@ List<string> cities = new()
     "cit_Ih Zas Matyf"
 };
 
+/// <summary>
+/// Нагрузка по поиску городов
+/// </summary>
 var t1 = Task.Run(() =>
     Parallel.For(0, 100000, new ParallelOptions { MaxDegreeOfParallelism = 100 }, i => {
         var random = new Random();
@@ -1060,6 +1068,10 @@ var t1 = Task.Run(() =>
 
     })
 );
+
+/// <summary>
+/// Нагрузка по поиску IP
+/// </summary>
 var t2 = Task.Run(() =>
     Parallel.For(0, 100000, new ParallelOptions { MaxDegreeOfParallelism = 100 }, i =>
     {
